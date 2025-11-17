@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommendation System</title>
+    <link rel="stylesheet" href="/client/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎵 Music Recommendation System</h1>
+            <p class="subtitle">Discover your next favorite song based on your preferences</p>
+        </header>
+
+        <main>
+            <form id="recommendationForm" class="recommendation-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="artist">Artist Name *</label>
+                        <div class="autocomplete-wrapper">
+                            <input type="text" id="artist" name="artist" required 
+                                   placeholder="e.g., The Weeknd" autocomplete="off">
+                            <div id="artistAutocomplete" class="autocomplete-dropdown"></div>
+                        </div>
+                        <small>Start typing to see matching artists</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="genre">Genre *</label>
+                        <select id="genre" name="genre" required>
+                            <option value="">Select a genre</option>
+                            <option value="rock">Rock</option>
+                            <option value="r&b">R&B</option>
+                            <option value="pop">Pop</option>
+                            <option value="edm">EDM</option>
+                            <option value="rap">Rap</option>
+                            <option value="latin">Latin</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subgenre">Subgenre *</label>
+                        <select id="subgenre" name="subgenre" required>
+                            <option value="">Select a subgenre</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="popularity">Popularity</label>
+                        <input type="number" id="popularity" name="popularity" 
+                               min="0" max="100" value="50" 
+                               placeholder="0-100">
+                        <small>Track popularity score (0-100)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="energy">Energy</label>
+                        <input type="range" id="energy" name="energy" 
+                               min="0" max="1" step="0.01" value="0.5">
+                        <div class="range-value">
+                            <span id="energyValue">0.50</span>
+                        </div>
+                        <small>Energy level (0.0 - 1.0)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mode">Mode</label>
+                        <input type="range" id="mode" name="mode" 
+                               min="0" max="1" step="0.01" value="0.5">
+                        <div class="range-value">
+                            <span id="modeValue">0.50</span>
+                        </div>
+                        <small>Musical mode (0.0 - 1.0)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="speechiness">Speechiness</label>
+                        <input type="range" id="speechiness" name="speechiness" 
+                               min="0" max="1" step="0.01" value="0.5">
+                        <div class="range-value">
+                            <span id="speechinessValue">0.50</span>
+                        </div>
+                        <small>Speechiness level (0.0 - 1.0)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="instrumentalness">Instrumentalness</label>
+                        <input type="range" id="instrumentalness" name="instrumentalness" 
+                               min="0" max="1" step="0.01" value="0.5">
+                        <div class="range-value">
+                            <span id="instrumentalnessValue">0.50</span>
+                        </div>
+                        <small>Instrumentalness level (0.0 - 1.0)</small>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="btn-text">Get Recommendations</span>
+                    <span class="btn-loader" style="display: none;">
+                        <span class="spinner"></span>
+                        Loading...
+                    </span>
+                </button>
+            </form>
+
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+            <div id="recommendations" class="recommendations-container" style="display: none;">
+                <h2>Your Recommendations</h2>
+                <div id="recommendationsList" class="recommendations-list"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/client/script.js"></script>
+</body>
+</html>
